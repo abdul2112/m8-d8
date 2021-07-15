@@ -13,11 +13,19 @@ export const notFoundErrorHandler = (err, req, res, next) => {
     next(err); // I need to pass the error to the next error middleware
   }
 };
+export const unauthorizedHandler = (err, req, res, next) => {
+  if (err.status === 401) {
+    res.status(401).send(err.message || 'Error not found!');
+  } else {
+    next(err); // I need to pass the error to the next error middleware
+  }
+};
 
 export const catchAllErrorHandler = (err, req, res, next) => {
   // if (err.name === 'ValidationError') {
   // res.status(400).send(err);
   // } else {
   res.status(500).send('Generic Server Error');
+  console.log(err);
   // }
 };

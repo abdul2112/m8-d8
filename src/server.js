@@ -6,6 +6,7 @@ import {
   badRequestErrorHandler,
   notFoundErrorHandler,
   catchAllErrorHandler,
+  unauthorizedHandler,
 } from './errorHandlers.js';
 import blogsRouter from './services/blogs/index.js';
 import authorsRouter from './services/authors/index.js';
@@ -28,6 +29,7 @@ server.use('/authors', authorsRouter);
 
 server.use(badRequestErrorHandler);
 server.use(notFoundErrorHandler);
+server.use(unauthorizedHandler);
 server.use(catchAllErrorHandler);
 
 console.table(listEndpoints(server));
